@@ -1,6 +1,7 @@
 import { Badge } from "./ui/badge";
 import { SubText } from "./ui/sub-text";
 import { Title } from "./ui/title";
+import Image from "next/image";
 import test from "../public/test.png"
 import quadricicloImg from "../public/quadriciculo/01.webp";
 import buggyImg from "../public/buggy/01.png";
@@ -91,12 +92,14 @@ export function Favorites() {
                             key={item.id}
                             className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
                         >
-                            <div className="relative">
-                                <img
-                                    src={typeof item.img === "string" ? item.img : item.img.src}
+                            <div className="relative h-64 w-full">
+                                <Image
+                                    src={typeof item.img === "string" ? item.img : item.img}
                                     alt={item.title}
-                                    className="h-64 w-full object-cover"
-                                    loading="lazy"
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                                    priority={item.id === 1}
                                 />
                                 <span className="absolute left-3 bottom-3 rounded-md bg-slate-900/90 px-3 py-1 text-xs font-semibold tracking-wide text-white">
                                     {item.days}

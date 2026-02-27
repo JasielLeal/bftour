@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { SubText } from "./ui/sub-text";
@@ -7,14 +8,28 @@ export function Hero() {
   return (
     <>
       <div className="bg-gray-50 overflow-hidden min-h-[100vh] sm:min-h-screen relative">
-        <div
-          className="absolute inset-0 bg-[url('/hero-desk.png')] bg-cover bg-center sm:hidden"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-0 bg-[url('/hero-desk.webp')] bg-cover bg-center hidden sm:block"
-          aria-hidden="true"
-        />
+        <div className="absolute inset-0 sm:hidden">
+          <Image
+            src="/hero-desk.png"
+            alt="Baía Formosa - Vista panorâmica"
+            fill
+            priority
+            quality={85}
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+        <div className="absolute inset-0 hidden sm:block">
+          <Image
+            src="/hero-desk.webp"
+            alt="Baía Formosa - Vista panorâmica"
+            fill
+            priority
+            quality={85}
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
         <div
           className="absolute inset-0 bg-gradient-to-r from-black/50 to-black/20"
           aria-hidden="true"

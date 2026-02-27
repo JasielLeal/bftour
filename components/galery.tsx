@@ -82,6 +82,8 @@ export function Galery() {
 										width={420}
 										height={280}
 										className="h-full w-full object-cover"
+										loading="lazy"
+										quality={75}
 									/>
 								</figure>
 							))}
@@ -98,6 +100,8 @@ export function Galery() {
 										width={420}
 										height={280}
 										className="h-full w-full object-cover"
+										loading="lazy"
+										quality={75}
 									/>
 								</figure>
 							))}
@@ -119,6 +123,8 @@ export function Galery() {
 										width={420}
 										height={280}
 										className="h-full w-full object-cover"
+										loading="lazy"
+										quality={75}
 									/>
 								</figure>
 							))}
@@ -135,6 +141,8 @@ export function Galery() {
 										width={420}
 										height={280}
 										className="h-full w-full object-cover"
+										loading="lazy"
+										quality={75}
 									/>
 								</figure>
 							))}
