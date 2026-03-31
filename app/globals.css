@@ -176,3 +176,13 @@
   gap: 1.5rem;
   padding-right: 1.5rem;
 }
+
+.gallery-fade {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 14%,
+    black 86%,
+    transparent 100%
+  );
+}

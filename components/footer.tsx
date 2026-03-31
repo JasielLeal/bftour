@@ -60,8 +60,8 @@ export function Footer() {
                                 </a>
                             </li>
                             <li>
-                                <a className="hover:text-slate-900 transition" href="tel:+5584999999999">
-                                    (84) 9 9999-9999
+                                <a className="hover:text-slate-900 transition" href="tel:+5584994511101">
+                                    (84) 9 9451-1101
                                 </a>
                             </li>
                             <li>
@@ -77,22 +77,22 @@ export function Footer() {
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-900">Links rápidos</h4>
                         <ul className="mt-4 space-y-2 text-sm text-slate-600">
                             <li>
-                                <Link className="hover:text-slate-900 transition" href="#inicio">
+                                <Link className="hover:text-slate-900 transition" href="/">
                                     Início
                                 </Link>
                             </li>
                             <li>
-                                <Link className="hover:text-slate-900 transition" href="#services">
+                                <Link className="hover:text-slate-900 transition" href="/#services">
                                     Serviços
                                 </Link>
                             </li>
                             <li>
-                                <Link className="hover:text-slate-900 transition" href="#destinos">
+                                <Link className="hover:text-slate-900 transition" href="/#destinos">
                                     Destinos
                                 </Link>
                             </li>
                             <li>
-                                <Link className="hover:text-slate-900 transition" href="#contato">
+                                <Link className="hover:text-slate-900 transition" href="/#contato">
                                     Contato
                                 </Link>
                             </li>

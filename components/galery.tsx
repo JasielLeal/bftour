@@ -4,54 +4,24 @@ import { SubText } from "./ui/sub-text";
 import { Title } from "./ui/title";
 
 const galleryItems = [
-	{
-		id: 1,
-		src: "/quadriciculo.jpeg",
-		alt: "Passeio em Baía Formosa",
-		size: "large",
-	},
-	{
-		id: 2,
-		src: "/quadriciculo.jpeg",
-		alt: "Paisagens naturais",
-		size: "small",
-	},
-	{
-		id: 3,
-		src: "/quadriciculo.jpeg",
-		alt: "Praias e mar",
-		size: "medium",
-	},
-	{
-		id: 4,
-		src: "/quadriciculo.jpeg",
-		alt: "Experiências ao ar livre",
-		size: "large",
-	},
-	{
-		id: 5,
-		src: "/quadriciculo.jpeg",
-		alt: "Aventura e turismo",
-		size: "small",
-	},
-	{
-		id: 6,
-		src: "/quadriciculo.jpeg",
-		alt: "Cenários incríveis",
-		size: "medium",
-	},
+	{ id: 1,  src: "/quadriciculo/01.webp",                            alt: "Passeio de Quadriciclo",  size: "large" },
+	{ id: 2,  src: "/buggy/01.webp",                                   alt: "Passeio de Buggy",        size: "large" },
+	{ id: 3,  src: "/canoa/01.webp",                                   alt: "Passeio de Canoa",        size: "large" },
+	{ id: 4,  src: "/barco/01.webp",                                   alt: "Passeio de Barco",        size: "large" },
+	{ id: 5,  src: "/surf/01.webp",                                    alt: "Aulas de Surf",           size: "large" },
+	{ id: 6,  src: "/trilha-na-mata/01.webp",                          alt: "Trilha na Mata",          size: "large" },
+	{ id: 7,  src: "/experiencia-gastronomica/bf-music/01.webp",       alt: "BF Music",                size: "large" },
+	{ id: 8,  src: "/experiencia-gastronomica/pizzaria-cunhau/01.webp",alt: "Pizzaria Cunhaú",         size: "large" },
+	{ id: 9,  src: "/experiencia-gastronomica/willian-sushi/01.webp",  alt: "Willian Sushi",           size: "large" },
+	{ id: 10, src: "/pousadas/bellaflor/01.webp",                      alt: "Pousada Bella Flor",      size: "large" },
+	{ id: 11, src: "/pousadas/villamar/01.webp",                       alt: "Pousada Villa Mar",       size: "large" },
 ];
 
 const sizeClasses: Record<string, string> = {
-	large: "w-[420px] h-[280px]",
-	medium: "w-[320px] h-[220px]",
-	small: "w-[240px] h-[180px]",
+	large: "w-[380px] h-[260px]",
 };
 
 export function Galery() {
-	const rowOne = [...galleryItems];
-	const rowTwo = [...galleryItems.slice(2), ...galleryItems.slice(0, 2)];
-
 	return (
 		<section className="bg-gray-50" id="galeria">
 			<div className="max-w-7xl mx-auto px-6 py-20">
@@ -67,20 +37,20 @@ export function Galery() {
 				</div>
 			</div>
 
-			<div className="overflow-hidden">
+			<div className="gallery-fade overflow-hidden">
 				<div className="marquee py-6">
 					<div className="marquee-track">
 						<div className="marquee-set">
-							{rowOne.map((item, index) => (
+							{galleryItems.map((item) => (
 								<figure
-									key={`${item.id}-row1-${index}`}
+									key={item.id}
 									className={`relative shrink-0 overflow-hidden rounded-3xl shadow-md ${sizeClasses[item.size]}`}
 								>
 									<Image
 										src={item.src}
 										alt={item.alt}
-										width={420}
-										height={280}
+										width={380}
+										height={260}
 										className="h-full w-full object-cover"
 										loading="lazy"
 										quality={75}
@@ -88,58 +58,18 @@ export function Galery() {
 								</figure>
 							))}
 						</div>
+						{/* Duplicate for seamless loop */}
 						<div className="marquee-set" aria-hidden="true">
-							{rowOne.map((item, index) => (
+							{galleryItems.map((item) => (
 								<figure
-									key={`${item.id}-row1-dup-${index}`}
+									key={`dup-${item.id}`}
 									className={`relative shrink-0 overflow-hidden rounded-3xl shadow-md ${sizeClasses[item.size]}`}
 								>
 									<Image
 										src={item.src}
 										alt={item.alt}
-										width={420}
-										height={280}
-										className="h-full w-full object-cover"
-										loading="lazy"
-										quality={75}
-									/>
-								</figure>
-							))}
-						</div>
-					</div>
-				</div>
-
-				<div className="marquee py-6">
-					<div className="marquee-track marquee-reverse">
-						<div className="marquee-set">
-							{rowTwo.map((item, index) => (
-								<figure
-									key={`${item.id}-row2-${index}`}
-									className={`relative shrink-0 overflow-hidden rounded-3xl shadow-md ${sizeClasses[item.size]}`}
-								>
-									<Image
-										src={item.src}
-										alt={item.alt}
-										width={420}
-										height={280}
-										className="h-full w-full object-cover"
-										loading="lazy"
-										quality={75}
-									/>
-								</figure>
-							))}
-						</div>
-						<div className="marquee-set" aria-hidden="true">
-							{rowTwo.map((item, index) => (
-								<figure
-									key={`${item.id}-row2-dup-${index}`}
-									className={`relative shrink-0 overflow-hidden rounded-3xl shadow-md ${sizeClasses[item.size]}`}
-								>
-									<Image
-										src={item.src}
-										alt={item.alt}
-										width={420}
-										height={280}
+										width={380}
+										height={260}
 										className="h-full w-full object-cover"
 										loading="lazy"
 										quality={75}
@@ -153,3 +83,4 @@ export function Galery() {
 		</section>
 	);
 }
+

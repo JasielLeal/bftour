@@ -6,21 +6,33 @@ import { Galery } from "@/components/galery";
 import { Location } from "@/components/locations";
 import { Footer } from "@/components/footer";
 import { ExpirenciesGastronomics } from "@/components/expirencies-gastronomics";
+import { Reviews } from "@/components/reviews";
+import owner from "@/public/owner.png";   
+import Image from "next/image";
 
 export default function Home() {
   return (
     <>
       <div className="min-h-screen bg-gray-50">
         <main>
-          <Hero />
+          <section id="inicio">
+            <Hero />
+          </section>
           <Favorites />
           <WhereIts />
-          <Activities />
-          <ExpirenciesGastronomics />
+          <section id="services">
+            <Activities />
+            <ExpirenciesGastronomics />
+          </section>
           <Galery />
-          <Location />
+          <Reviews />
+          <section id="destinos">
+            <Location />
+          </section>
         </main>
-        <Footer />
+        <section id="contato">
+          <Footer />
+        </section>
       </div>
     </>
   );

@@ -127,6 +127,7 @@ export const experiencias: Experiencia[] = [
             { name: "Stand-up" },
         ],
         valorPor: "Buggy",
+        onsale: true,
     },
     {
         slug: "barco-roteiro-completo",
@@ -157,7 +158,8 @@ export const experiencias: Experiencia[] = [
                 titulo: "Chegada à Praia do Farol",
                 texto: "Chegamos à deslumbrante Praia do Farol, um dos cenários mais bonitos da região, ideal para contemplação, descanso e registros inesquecíveis.",
             },
-        ]
+        ],
+        onsale: true,
     },
     {
         slug: "canoa-roteiro-completo",
@@ -192,7 +194,8 @@ export const experiencias: Experiencia[] = [
                 texto:
                     "Chegamos a uma área especial, semelhante a uma ilha, onde é possível aproveitar um banho refrescante, tirar fotos no balanço, registrar a famosa pegada do caranguejo e curtir o tradicional banho de argila, o grande atrativo do passeio.",
             }
-        ]
+        ],
+        onsale: true,
     },
     {
         slug: "aula-de-surf",
