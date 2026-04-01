@@ -69,7 +69,7 @@ export function Footer() {
                                     {address}
                                 </a>
                             </li>
-                            <li>Atendimento: Seg a Sáb · 08:00 - 18:00</li>
+                            <li>Atendimento: Seg a Dom</li>
                         </ul>
                     </div>
 
