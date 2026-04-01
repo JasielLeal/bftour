@@ -3,13 +3,9 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useCart } from "@/components/cart/cart-context";
+import { Reveal } from "@/components/reveal";
 
 const whatsappBaseUrl = "https://wa.me/5584994538722";
-
-const steps = [
-  { id: 1, label: "Carrinho", active: false },
-  { id: 2, label: "Finalizar no WhatsApp", active: true },
-];
 
 export default function Finish() {
   const { items, buildWhatsappMessage } = useCart();
@@ -19,7 +15,7 @@ export default function Finish() {
   return (
     <section className="bg-gray-50 min-h-screen" id="finalizar">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="flex items-center justify-between pt-20">
+        <Reveal className="flex items-center justify-between pt-20">
           <div>
             <h1 className="text-2xl font-semibold text-black">Finalização</h1>
             <Link
@@ -29,10 +25,11 @@ export default function Finish() {
               &larr; Voltar ao carrinho
             </Link>
           </div>
-        </div>
+        </Reveal>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1.4fr_0.6fr]">
-          <div className="rounded-3xl border border-slate-200/80 bg-white p-8">
+          <Reveal>
+            <div className="interactive-card rounded-3xl border border-slate-200/80 bg-white p-8">
             <h2 className="text-lg font-semibold text-black">
               Confirmação no WhatsApp
             </h2>
@@ -45,9 +42,11 @@ export default function Finish() {
                 Abrir WhatsApp
               </a>
             </Button>
-          </div>
+            </div>
+          </Reveal>
 
-          <aside className="rounded-3xl border border-slate-200/80 bg-white p-6 h-fit">
+          <Reveal delay={150}>
+            <aside className="interactive-card rounded-3xl border border-slate-200/80 bg-white p-6 h-fit">
             <h3 className="text-sm font-semibold text-black">
               Resumo do pedido
             </h3>
@@ -75,7 +74,8 @@ export default function Finish() {
                 </span>
               </div>
             </div>
-          </aside>
+            </aside>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import { ExperienceGallery } from "@/components/experience/experience-gallery";
 import { AddToCartButton } from "@/components/experience/add-to-cart-button";
 import { Badge } from "@/components/ui/badge";
 import { Title } from "@/components/ui/title";
+import { Reveal } from "@/components/reveal";
 
 export async function generateStaticParams() {
   return experiencias.map((experiencia) => ({ slug: experiencia.slug }));
@@ -25,9 +26,9 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
   }
 
   return (
-    <section className="min-h-screen bg-[radial-gradient(circle_at_top,_#fff7ed_0%,_#f8fafc_45%,_#eef2ff_100%)]">
+    <section className="min-h-screen bg-[radial-gradient(circle_at_top,#fff7ed_0%,#f8fafc_45%,#eef2ff_100%)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
-        <div className="pt-20 sm:pt-20">
+        <Reveal className="pt-20 sm:pt-20">
           <Badge className="mb-2">{experiencia.tipo}</Badge>
           <Title>{experiencia.titulo}</Title>
           <div className="mt-2 flex flex-wrap items-center gap-3">
@@ -37,16 +38,19 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
             </p>
             <span className="h-1 w-1 rounded-full bg-black/30" />
           </div>
-        </div>
+        </Reveal>
 
         <div className="mt-8 sm:mt-10 grid gap-8 lg:gap-10 lg:grid-cols-[1.5fr_0.7fr]">
           <div className="space-y-10">
-            <ExperienceGallery
-              imagens={experiencia.imagens}
-              titulo={experiencia.titulo}
-            />
+            <Reveal delay={100}>
+              <ExperienceGallery
+                imagens={experiencia.imagens}
+                titulo={experiencia.titulo}
+              />
+            </Reveal>
 
-            <div className="rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6">
+            <Reveal delay={180}>
+            <div className="interactive-card rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6">
               <h3 className="text-base sm:text-lg font-semibold text-black/60">
                 Sobre a experiência
               </h3>
@@ -124,9 +128,11 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
                 </div>
               )}
             </div>
+            </Reveal>
 
             {experiencia.roteiro && experiencia.roteiro.length > 0 && (
-              <div className="rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6">
+              <Reveal delay={240}>
+              <div className="interactive-card rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <p className="text-xs font-semibold uppercase text-primary">
@@ -159,10 +165,12 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
                   ))}
                 </div>
               </div>
+              </Reveal>
             )}
 
             {experiencia.opcoes && experiencia.opcoes.length > 0 && (
-              <div className="rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6">
+              <Reveal delay={300}>
+              <div className="interactive-card rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6">
                 <h3 className="text-base sm:text-lg font-semibold text-black/80">
                   Opções de serviço
                 </h3>
@@ -182,11 +190,13 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
                   ))}
                 </ul>
               </div>
+              </Reveal>
             )}
 
             <div className="grid gap-4 lg:grid-cols-[1.2fr_1fr]">
               {experiencia.extras && experiencia.extras.length > 0 && (
-                <div className="rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6">
+                <Reveal delay={360}>
+                <div className="interactive-card rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6">
                   <h3 className="text-base sm:text-lg font-semibold text-black/80">
                     Opções extras
                   </h3>
@@ -206,8 +216,10 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
                     ))}
                   </ul>
                 </div>
+                </Reveal>
               )}
-              <div className="rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/10 via-white to-white p-5 sm:p-6">
+              <Reveal delay={420}>
+              <div className="interactive-card rounded-3xl border border-primary/20 bg-linear-to-br from-primary/10 via-white to-white p-5 sm:p-6">
                 <h3 className="text-base sm:text-lg font-semibold text-black/80">
                   Por que escolher a Baía Formosa Tour?
                 </h3>
@@ -225,11 +237,13 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
                   ))}
                 </ul>
               </div>
+              </Reveal>
             </div>
           </div>
 
           {experiencia.onsale ? (
-            <aside className="rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6 h-fit">
+            <Reveal delay={220}>
+            <aside className="interactive-card rounded-3xl border border-slate-200/80 bg-white p-5 sm:p-6 h-fit">
               <h3 className="text-sm font-semibold text-black/80">
                 Sua experiência
               </h3>
@@ -271,6 +285,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
                 disponíveis.
               </div>
             </aside>
+            </Reveal>
           ) : (
             ""
           )}

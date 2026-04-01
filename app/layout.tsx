@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./providers/theme-providder";
 import { CartProvider } from "@/components/cart/cart-context";
 import { Header } from "@/components/navbar";
+import { PageTransition } from "@/components/page-transition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light">
           <CartProvider>
             <Header />
-            {children}
+            <PageTransition>{children}</PageTransition>
           </CartProvider>
         </ThemeProvider>
       </body>

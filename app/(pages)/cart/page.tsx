@@ -7,11 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import { useCart } from "@/components/cart/cart-context";
 import { experiencias } from "@/data/experiencias";
-
-const steps = [
-    { id: 1, label: "Carrinho", active: true },
-    { id: 2, label: "Finalizar no WhatsApp", active: false },
-];
+import { Reveal } from "@/components/reveal";
 
 const experienceMap = new Map(experiencias.map((exp) => [exp.slug, exp]));
 
@@ -46,26 +42,26 @@ export default function Cart() {
     return (
         <section className="bg-gray-200 min-h-screen" id="carrinho">
             <div className="max-w-7xl mx-auto px-6 py-16">
-                <div className="flex items-center justify-between pt-20">
+                <Reveal className="flex items-center justify-between pt-20">
                     <h1 className="text-2xl font-semibold text-black">Carrinho</h1>
-                </div>
+                </Reveal>
 
                 <div className="mt-10 grid gap-10 lg:grid-cols-[1.4fr_0.6fr]">
                     <div className="space-y-6">
                         {groupedItems.length === 0 && (
-                            <div className="rounded-3xl border border-slate-200/80 bg-white p-8 text-sm text-black/70">
+                            <Reveal className="rounded-3xl border border-slate-200/80 bg-white p-8 text-sm text-black/70">
                                 Seu carrinho está vazio.
-                            </div>
+                            </Reveal>
                         )}
 
                         {groupedItems.map(({ item, qty }) => {
                             const exp = experienceMap.get(item.id);
                             const image = exp?.imagens?.[0] ?? "/quadriciculo.jpeg";
                             const subtitle = exp ? `${exp.tipo} · ${exp.duracao}` : item.tipo;
-                            const por = exp ? exp.valorPor : "pessoa";
 
                             return (
-                                <article key={item.id} className="rounded-3xl border border-slate-200/80 bg-white p-5">
+                                <Reveal key={item.id} delay={qty * 70}>
+                                <article className="interactive-card rounded-3xl border border-slate-200/80 bg-white p-5">
                                     <div className="flex gap-4">
                                         <div className="relative h-24 w-20 overflow-hidden rounded-2xl bg-slate-100">
                                             <Image
@@ -106,11 +102,13 @@ export default function Cart() {
                                         </button>
                                     </div>
                                 </article>
+                                </Reveal>
                             );
                         })}
                     </div>
 
-                    <aside className="rounded-3xl border border-slate-200/80 bg-white p-6 h-fit">
+                    <Reveal delay={160}>
+                    <aside className="interactive-card rounded-3xl border border-slate-200/80 bg-white p-6 h-fit">
                         <h3 className="text-sm font-semibold text-black">Resumo do pedido</h3>
                         <div className="mt-4 space-y-2 text-xs text-black/60">
                             <div className="flex items-center justify-between">
@@ -126,6 +124,7 @@ export default function Cart() {
                             <Link href="/finish">Prosseguir</Link>
                         </Button>
                     </aside>
+                    </Reveal>
                 </div>
             </div>
         </section>

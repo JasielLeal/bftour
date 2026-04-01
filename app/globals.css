@@ -186,3 +186,108 @@
     transparent 100%
   );
 }
+
+.page-enter {
+  animation: page-enter 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-in-view {
+  --animation-delay: 0ms;
+  opacity: 0;
+  transform: translate3d(0, 36px, 0) scale(0.985);
+  transition:
+    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--animation-delay);
+  will-change: opacity, transform;
+}
+
+.animate-in-view--left {
+  transform: translate3d(-44px, 0, 0) scale(0.985);
+}
+
+.animate-in-view--right {
+  transform: translate3d(44px, 0, 0) scale(0.985);
+}
+
+.animate-in-view--zoom {
+  transform: scale(0.94);
+}
+
+.animate-in-view.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.interactive-card {
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 320ms ease;
+  transform-origin: center;
+}
+
+.interactive-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.12);
+  border-color: color-mix(in srgb, var(--primary) 24%, #e2e8f0);
+}
+
+.hero-image-pan {
+  animation: hero-pan 18s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+.floating-soft {
+  animation: floating-soft 4.8s ease-in-out infinite;
+}
+
+@keyframes page-enter {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-pan {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.08) translate3d(-1.5%, -1.5%, 0);
+  }
+}
+
+@keyframes floating-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-in-view {
+    opacity: 1;
+    transform: none;
+  }
+}

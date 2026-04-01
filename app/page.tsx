@@ -7,8 +7,6 @@ import { Location } from "@/components/locations";
 import { Footer } from "@/components/footer";
 import { ExpirenciesGastronomics } from "@/components/expirencies-gastronomics";
 import { Reviews } from "@/components/reviews";
-import owner from "@/public/owner.png";   
-import Image from "next/image";
 
 export default function Home() {
   return (

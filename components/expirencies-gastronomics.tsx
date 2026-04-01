@@ -6,6 +6,7 @@ import { SubText } from "./ui/sub-text";
 import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
+import { Reveal } from "./reveal";
 
 export function ExpirenciesGastronomics() {
   const activities = [
@@ -52,7 +53,7 @@ export function ExpirenciesGastronomics() {
   return (
     <section className="bg-white" id="atividades">
       <div className="max-w-7xl mx-auto px-6 py-20">
-        <div className="flex flex-col gap-4 items-center text-center">
+        <Reveal className="flex flex-col gap-4 items-center text-center">
           <Badge>Experiência Gastronômica</Badge>
           <Title>Sabores que Encantam</Title>
           <div className="max-w-2xl">
@@ -61,7 +62,7 @@ export function ExpirenciesGastronomics() {
               regionais que revelam os sabores e tradições da nossa terra.
             </SubText>
           </div>
-        </div>
+        </Reveal>
 
         <div className="relative mt-10">
           <button
@@ -86,29 +87,30 @@ export function ExpirenciesGastronomics() {
             className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 no-scrollbar"
           >
             {activities.map((activity) => (
-              <Link
-                key={activity.id}
-                href={`/experiencia/${activity.slug}`}
-                className="group relative min-w-[280px] sm:min-w-[320px] lg:min-w-[360px] h-80 snap-start overflow-hidden rounded-3xl border border-slate-200 shadow-sm"
-              >
-                <Image
-                  src={activity.image}
-                  alt={activity.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width: 768px) 80vw, 360px"
-                  priority={activity.id === 1}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                  <p className="text-white/70 text-sm uppercase tracking-[0.2em]">
-                    {activity.kicker}
-                  </p>
-                  <h3 className="text-white text-2xl font-semibold">
-                    {activity.title}
-                  </h3>
-                </div>
-              </Link>
+              <Reveal key={activity.id} delay={activity.id * 120} className="shrink-0">
+                <Link
+                  href={`/experiencia/${activity.slug}`}
+                  className="interactive-card group relative block min-w-[280px] sm:min-w-[320px] lg:min-w-[360px] h-80 snap-start overflow-hidden rounded-3xl border border-slate-200 shadow-sm"
+                >
+                  <Image
+                    src={activity.image}
+                    alt={activity.alt}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 80vw, 360px"
+                    priority={activity.id === 1}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                  <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                    <p className="text-white/70 text-sm uppercase tracking-[0.2em]">
+                      {activity.kicker}
+                    </p>
+                    <h3 className="text-white text-2xl font-semibold">
+                      {activity.title}
+                    </h3>
+                  </div>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>

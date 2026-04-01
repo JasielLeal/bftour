@@ -7,6 +7,7 @@ import { Title } from "./ui/title";
 import { SubText } from "./ui/sub-text";
 import { Button } from "./ui/button";
 import { useState, useEffect, useCallback } from "react";
+import { Reveal } from "./reveal";
 
 const depoimentos = [
     {
@@ -76,8 +77,10 @@ export function Reviews() {
     return (
         <section className="bg-gray-50 py-20">
             <div className="max-w-7xl mx-auto px-6">
-                <Badge>Depoimentos</Badge>
-                <div className="mt-3 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+                <Reveal className="w-fit">
+                    <Badge>Depoimentos</Badge>
+                </Reveal>
+                <Reveal delay={100} className="mt-3 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
                     <div className="max-w-lg">
                         <Title>O que nossos clientes dizem</Title>
                         <div className="mt-2">
@@ -89,9 +92,9 @@ export function Reviews() {
                     <Link href="/feedback">
                         <Button variant="outline">Ver todas as avaliações</Button>
                     </Link>
-                </div>
+                </Reveal>
 
-                <div className="relative">
+                <Reveal delay={180} className="relative">
                     {/* Carousel track */}
                     <div className="overflow-hidden rounded-2xl">
                         <div
@@ -103,7 +106,7 @@ export function Reviews() {
                                     key={d.id}
                                     className="w-full shrink-0 px-1"
                                 >
-                                    <div className="flex flex-col gap-4 rounded-2xl border border-slate-200/80 bg-white p-8 max-w-2xl mx-auto">
+                                    <div className="interactive-card flex flex-col gap-4 rounded-2xl border border-slate-200/80 bg-white p-8 max-w-2xl mx-auto">
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-3">
                                                 <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
@@ -153,7 +156,7 @@ export function Reviews() {
                     >
                         <ChevronRight className="size-5 text-slate-600" />
                     </button>
-                </div>
+                </Reveal>
 
                 {/* Dots */}
                 <div className="mt-6 flex justify-center gap-2">

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Title } from "@/components/ui/title";
 import { SubText } from "@/components/ui/sub-text";
 import { Footer } from "@/components/footer";
+import { Reveal } from "@/components/reveal";
 
 const experiencias = [
     "Passeio de Quadriciclo",
@@ -132,7 +133,7 @@ function StarRating({
 
 function ReviewCard({ review }: { review: (typeof depoimentos)[0] }) {
     return (
-        <div className="flex flex-col gap-4 rounded-2xl border border-slate-200/80 bg-white p-6">
+        <div className="interactive-card flex flex-col gap-4 rounded-2xl border border-slate-200/80 bg-white p-6">
             <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
                     <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
@@ -195,16 +196,20 @@ export default function FeedbackPage() {
                 {/* Hero section */}
                 <section className="bg-white border-b border-slate-200/80">
                     <div className="max-w-7xl mx-auto px-6 pt-28 pb-14">
-                        <Link
-                            href="/"
-                            className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-800 transition mb-6"
-                        >
-                            <ChevronLeft className="size-4" />
-                            Voltar ao início
-                        </Link>
+                        <Reveal>
+                            <Link
+                                href="/"
+                                className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-800 transition mb-6"
+                            >
+                                <ChevronLeft className="size-4" />
+                                Voltar ao início
+                            </Link>
+                        </Reveal>
 
-                        <Badge>Avaliações</Badge>
-                        <div className="mt-3 max-w-2xl">
+                        <Reveal delay={90} className="w-fit">
+                            <Badge>Avaliações</Badge>
+                        </Reveal>
+                        <Reveal delay={180} className="mt-3 max-w-2xl">
                             <Title>O que nossos clientes dizem</Title>
                             <div className="mt-3">
                                 <SubText>
@@ -213,10 +218,10 @@ export default function FeedbackPage() {
                                     história.
                                 </SubText>
                             </div>
-                        </div>
+                        </Reveal>
 
                         {/* Stats */}
-                        <div className="mt-10 flex flex-wrap items-center gap-8">
+                        <Reveal delay={260} className="mt-10 flex flex-wrap items-center gap-8">
                             <div className="flex items-end gap-3">
                                 <span className="text-6xl font-bold text-slate-900 leading-none">
                                     {mediaGeral.toFixed(1)}
@@ -250,27 +255,32 @@ export default function FeedbackPage() {
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </Reveal>
                     </div>
                 </section>
 
                 <section className="max-w-7xl mx-auto px-6 py-16">
                     <div className="grid gap-10 lg:grid-cols-[1fr_380px]">
                         {/* Reviews grid */}
+                        <Reveal>
                         <div>
                             <h2 className="text-lg font-semibold text-slate-900 mb-6">
                                 Depoimentos recentes
                             </h2>
                             <div className="grid gap-4 sm:grid-cols-2">
                                 {depoimentos.map((review) => (
-                                    <ReviewCard key={review.id} review={review} />
+                                    <Reveal key={review.id} delay={review.id * 70}>
+                                        <ReviewCard review={review} />
+                                    </Reveal>
                                 ))}
                             </div>
                         </div>
+                        </Reveal>
 
                         {/* Feedback form */}
+                        <Reveal delay={160}>
                         <aside className="lg:sticky lg:top-24 h-fit">
-                            <div className="rounded-2xl border border-slate-200/80 bg-white p-6">
+                            <div className="interactive-card rounded-2xl border border-slate-200/80 bg-white p-6">
                                 <div className="flex items-center gap-2 mb-1">
                                     <MessageSquare className="size-5 text-primary" />
                                     <h2 className="text-base font-semibold text-slate-900">
@@ -407,6 +417,7 @@ export default function FeedbackPage() {
                                 )}
                             </div>
                         </aside>
+                        </Reveal>
                     </div>
                 </section>
             </main>

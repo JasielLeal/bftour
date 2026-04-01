@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Reveal } from "./reveal";
 
 const address = "R. Sen. Antonio Arruda Farias, 56, Baía Formosa - RN, 59194-000";
 const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
@@ -8,6 +9,7 @@ export function Footer() {
         <footer className="bg-white text-slate-700">
             <div className="max-w-7xl mx-auto px-6 py-14">
                 <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+                    <Reveal className="h-full">
                     <div>
                         <h3 className="text-lg font-semibold text-slate-900">Baía Formosa Tour</h3>
                         <p className="mt-3 text-sm text-slate-600">
@@ -50,7 +52,9 @@ export function Footer() {
                             </a>
                         </div>
                     </div>
+                    </Reveal>
 
+                    <Reveal delay={90} className="h-full">
                     <div>
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-900">Contato</h4>
                         <ul className="mt-4 space-y-2 text-sm text-slate-600">
@@ -72,7 +76,9 @@ export function Footer() {
                             <li>Atendimento: Seg a Dom</li>
                         </ul>
                     </div>
+                    </Reveal>
 
+                    <Reveal delay={180} className="h-full">
                     <div>
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-900">Links rápidos</h4>
                         <ul className="mt-4 space-y-2 text-sm text-slate-600">
@@ -98,7 +104,9 @@ export function Footer() {
                             </li>
                         </ul>
                     </div>
+                    </Reveal>
 
+                    <Reveal delay={270} className="h-full">
                     <div>
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-900">Diferenciais</h4>
                         <ul className="mt-4 space-y-2 text-sm text-slate-600">
@@ -108,9 +116,10 @@ export function Footer() {
                             <li>Pagamento facilitado</li>
                         </ul>
                     </div>
+                    </Reveal>
                 </div>
 
-                <div className="mt-10 flex flex-col gap-3 border-t border-slate-200 pt-6 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">
+                <Reveal delay={320} className="mt-10 flex flex-col gap-3 border-t border-slate-200 pt-6 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">
                     <p>© 2026 Baía Formosa Tour. Todos os direitos reservados.</p>
                     <div className="flex flex-wrap gap-4">
                         <Link href="#" className="hover:text-slate-900 transition">
@@ -120,7 +129,7 @@ export function Footer() {
                             Termos de uso
                         </Link>
                     </div>
-                </div>
+                </Reveal>
             </div>
         </footer>
     );

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { SubText } from "./ui/sub-text";
 import { Title } from "./ui/title";
+import { Reveal } from "./reveal";
 
 const galleryItems = [
 	{ id: 1, src: "/quadriciculo/01.webp", alt: "Passeio de Quadriciclo", size: "large" },
@@ -24,7 +25,7 @@ export function Galery() {
 	return (
 		<section className="bg-gray-50" id="galeria">
 			<div className="max-w-7xl mx-auto px-6 py-20">
-				<div className="flex flex-col gap-4 items-center text-center">
+				<Reveal className="flex flex-col gap-4 items-center text-center">
 					<Badge>Galeria</Badge>
 					<Title>Momentos que inspiram</Title>
 					<div className="max-w-2xl">
@@ -33,7 +34,7 @@ export function Galery() {
 							envolvente.
 						</SubText>
 					</div>
-				</div>
+				</Reveal>
 			</div>
 
 			<div className="gallery-fade overflow-hidden">
@@ -43,7 +44,7 @@ export function Galery() {
 							{galleryItems.map((item) => (
 								<figure
 									key={item.id}
-									className={`relative shrink-0 overflow-hidden rounded-3xl shadow-md ${sizeClasses[item.size]}`}
+									className={`relative shrink-0 overflow-hidden rounded-3xl shadow-md transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.02] ${sizeClasses[item.size]}`}
 								>
 									<Image
 										src={item.src}

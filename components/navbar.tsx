@@ -4,9 +4,8 @@ import { useState, useEffect } from "react"
 import logo from "@/public/logo.png"
 
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { CarTaxiFront, ShoppingCart, User } from "lucide-react"
+import { ShoppingCart, User } from "lucide-react"
 import { useCart } from "@/components/cart/cart-context"
 
 export function Header() {
