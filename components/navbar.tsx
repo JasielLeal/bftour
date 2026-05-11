@@ -2,169 +2,159 @@
 
 import { useState, useEffect } from "react"
 import logo from "@/public/logo.png"
-
 import Image from "next/image"
 import Link from "next/link"
-import { ShoppingCart, User } from "lucide-react"
+import { ShoppingCart, ArrowUpRight, Menu, X } from "lucide-react"
 import { useCart } from "@/components/cart/cart-context"
+import { Button } from "./ui/button"
 
 export function Header() {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isVisible, setIsVisible] = useState(true)
     const [lastScrollY, setLastScrollY] = useState(0)
+    const [mobileOpen, setMobileOpen] = useState(false)
     const { items } = useCart()
 
-
     const links = [
-        {
-            href: "#inicio",
-            label: "Início",
-        },
-        {
-            href: "#services",
-            label: "Serviços",
-            up: [
-                {
-                    href: "/experiencia/quadriciclo-roteiro-completo",
-                    label: "Passeio de quadriciclo",
-                },
-                {
-                    href: "/experiencia/buggy-roteiro-completo",
-                    label: "Passeio de buggy",
-                },
-                {
-                    href: "/experiencia/barco-roteiro-completo",
-                    label: "Passeio de barco",
-                },
-                {
-                    href: "/experiencia/canoa-roteiro-completo",
-                    label: "Passeio de canoa",
-                },
-                {
-                    href: "/experiencia/hospedagem",
-                    label: "Hospedagem",
-                }
-            ],
-        },
-        {
-            href: "#destinos",
-            label: "Destinos",
-        },
-        {
-            href: "#contato",
-            label: "Contato",
-        }
+        { href: "#inicio",    label: "Início" },
+        { href: "#favorites", label: "Serviços" },
+        { href: "#destinos",  label: "Destinos" },
+        { href: "#contato",   label: "Contato" },
     ]
 
     useEffect(() => {
         const handleScroll = () => {
-            const currentScrollY = window.scrollY
-
-            setIsScrolled(currentScrollY > 50)
-
-            if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                setIsVisible(false)
-            } else {
-                setIsVisible(true)
-            }
-
-            setLastScrollY(currentScrollY)
+            const y = window.scrollY
+            setIsScrolled(y > 50)
+            setIsVisible(y <= lastScrollY || y <= 100)
+            setLastScrollY(y)
         }
-
         window.addEventListener("scroll", handleScroll, { passive: true })
         return () => window.removeEventListener("scroll", handleScroll)
     }, [lastScrollY])
 
     return (
+        <>
         <header
-            className={`
-        fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ease-in-out
-        ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
-      `}
+            className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ease-in-out
+                ${isScrolled ? "pt-0" : "pt-3 sm:pt-4"}
+                ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
+            `}
         >
             <div
-                className={`
-                    w-[92vw] max-w-7xl flex items-center justify-between gap-6 px-6 py-3 rounded-2xl border transition-all duration-300
-          ${isScrolled
-                        ? "bg-white/90 backdrop-blur-xl border-border/40 shadow-2xl"
-                        : "bg-white/95 backdrop-blur-lg border-border/30 shadow-lg"
-                    }
-        `}
+                className={`max-w-[100vw] overflow-hidden transition-all duration-500
+                    ${isScrolled ? "" : "px-3 sm:px-6"}
+                `}
             >
-                <div className="transform transition-transform duration-200 hover:scale-105">
-                    <Link href="/" className="inline-flex items-center gap-2">
-                        <Image src={logo} alt="Baía Formosa Tour Logo" width={40} height={40} />
-                    </Link>
-                </div>
+                <div className={`max-w-7xl mx-auto transition-all duration-500
+                    ${isScrolled
+                        ? "bg-white/97 backdrop-blur-xl border-b border-slate-200/60 shadow-sm px-5 sm:px-8 py-3"
+                        : "bg-transparent border border-white/10 rounded-2xl px-4 sm:px-5 py-2.5"
+                    }
+                `}>
+                <div className="flex items-center justify-between gap-3 sm:gap-6">
+                {/* Logo */}
+                <Link href="/" className="inline-flex items-center gap-2 shrink-0 hover:opacity-90 transition-opacity">
+                    <Image src={logo} alt="Baía Formosa Tour" width={38} height={38} />
+                </Link>
 
-                <nav className="hidden md:flex flex-1 items-center justify-center gap-6 font-medium">
+                {/* Desktop nav */}
+                <nav className="hidden md:flex flex-1 items-center justify-center gap-1">
                     {links.map((link) => (
-                        <div key={link.href} className="relative">
-                            {!link.up ? (
-                                <Link
-                                    href={link.href}
-                                    className="relative text-black/80 hover:text-black transition-all duration-300 group px-3 py-1 rounded-lg hover:bg-foreground/5 transform hover:scale-110 hover:rotate-1 hover:skew-x-1"
-                                >
-                                    {link.label}
-                                    <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-4"></span>
-                                </Link>
-                            ) : (
-                                <div className="group relative">
-                                    <Link
-                                        href={link.href}
-                                        className="relative text-black/80 hover:text-black transition-all duration-300 group px-3 py-1 rounded-lg hover:bg-black/5 transform hover:scale-110 hover:rotate-1 hover:skew-x-1 inline-flex items-center gap-2"
-                                    >
-                                        {link.label}
-                                        <span className="text-xs opacity-70 transition-transform duration-200 group-hover:rotate-180">▾</span>
-                                        <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-black transition-all duration-200 group-hover:w-4"></span>
-                                    </Link>
-
-                                    <div className="absolute left-1/2 top-full z-50 hidden w-64 -translate-x-1/2 rounded-2xl border border-border/50 bg-white/95 p-2 shadow-2xl backdrop-blur-xl group-hover:block">
-                                        <div className="px-3 py-2 text-xs font-semibold uppercase text-black/60">
-                                            Serviços
-                                        </div>
-                                        <div className="space-y-1">
-                                            {link.up.map((sub) => (
-                                                <Link
-                                                    key={sub.href}
-                                                    href={sub.href}
-                                                    className="block rounded-xl px-3 py-2 text-sm text-black/80 transition-all duration-200 hover:bg-black/5 hover:text-black"
-                                                >
-                                                    {sub.label}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-xl group
+                                ${isScrolled
+                                    ? "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                                    : "text-white/85 hover:text-white hover:bg-white/10"
+                                }
+                            `}
+                        >
+                            {link.label}
+                            <span className={`absolute bottom-1.5 left-1/2 -translate-x-1/2 h-0.5 w-0 rounded-full transition-all duration-200 group-hover:w-4
+                                ${isScrolled ? "bg-primary" : "bg-white"}
+                            `} />
+                        </Link>
                     ))}
                 </nav>
 
+                {/* Right actions */}
                 <div className="flex items-center gap-2">
-                    <button
-                        type="button"
-                        className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-white px-3 py-2 text-xs text-black/80 transition-colors hover:text-black"
-                    >
-                        <User size={16} className="text-black/70" />
-                        <span>Olá, visitante</span>
-                    </button>
-
-                    <Link href="/cart"
-                        type="button"
-                        className="relative inline-flex size-9 items-center justify-center rounded-full border border-border/60 bg-white text-black/80 transition-colors hover:text-black"
+                    <Link
+                        href="/cart"
+                        className={`relative inline-flex size-9 items-center justify-center rounded-xl border transition-colors
+                            ${isScrolled
+                                ? "border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                                : "border-white/25 text-white hover:bg-white/15"
+                            }
+                        `}
                         aria-label="Carrinho"
-
                     >
                         <ShoppingCart size={16} />
                         {items.length > 0 && (
-                            <span className="absolute -top-1 -right-1 inline-flex min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-semibold text-white">
+                            <span className="absolute -top-1 -right-1 inline-flex min-w-4.5 h-4.5 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-bold text-white">
                                 {items.length}
                             </span>
                         )}
                     </Link>
+                    <Link href="https://wa.me/5584994511101?text=Olá! Vim do site e gostaria de agendar uma experiência." target="_blank">
+                        <Button size="sm" className={`hidden md:inline-flex gap-1.5 rounded-xl font-semibold text-sm px-4 h-9
+                            ${isScrolled ? "" : "bg-white text-slate-900 hover:bg-white/90"}
+                        `}>
+                            Agendar
+                            <ArrowUpRight className="size-3.5" />
+                        </Button>
+                    </Link>
+                    {/* Mobile menu toggle */}
+                    <button
+                        type="button"
+                        className={`md:hidden inline-flex size-9 items-center justify-center rounded-xl border transition-colors
+                            ${isScrolled
+                                ? "border-slate-200 text-slate-600 hover:bg-slate-50"
+                                : "border-white/25 text-white hover:bg-white/15"
+                            }
+                        `}
+                        onClick={() => setMobileOpen(!mobileOpen)}
+                        aria-label="Menu"
+                    >
+                        {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+                    </button>
+                </div>
+                </div>
                 </div>
             </div>
         </header>
+
+        {/* Mobile drawer */}
+        {mobileOpen && (
+            <div className="fixed inset-0 z-40 md:hidden" onClick={() => setMobileOpen(false)}>
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+                <nav
+                    className="absolute top-20 left-4 right-4 rounded-2xl bg-white shadow-2xl p-4 flex flex-col gap-1"
+                    onClick={(e) => e.stopPropagation()}
+                >
+                    {links.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className="px-4 py-3 text-sm font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-colors"
+                            onClick={() => setMobileOpen(false)}
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
+                    <div className="mt-2 pt-2 border-t border-slate-100">
+                        <Link href="https://wa.me/5584994511101" target="_blank" onClick={() => setMobileOpen(false)}>
+                            <Button className="w-full gap-2 rounded-xl">
+                                Agendar agora
+                                <ArrowUpRight className="size-4" />
+                            </Button>
+                        </Link>
+                    </div>
+                </nav>
+            </div>
+        )}
+        </>
     )
 }

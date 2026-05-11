@@ -1,110 +1,129 @@
-import { Badge } from "./ui/badge";
-import { SubText } from "./ui/sub-text";
-import { Title } from "./ui/title";
-import villarmar from "../public/pousadas/villamar/01.webp";
-import bellaflor from "../public/pousadas/bellaflor/01.webp";
-import Link from "next/link";
-import { Reveal } from "./reveal";
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import villarmar from "../public/pousadas/villamar/01.webp";
+import { Reveal } from "./reveal";
+import { ChevronDown, ArrowUpRight } from "lucide-react";
+
+const faqs = [
+    {
+        id: 1,
+        q: "Quais tipos de passeios a BF Tour oferece?",
+        a: "Oferecemos passeios de quadriciclo, buggy, barco, canoa, aulas de surf, trilhas na mata e experiências gastronômicas — tudo em Baía Formosa, RN.",
+    },
+    {
+        id: 2,
+        q: "Como funciona o cancelamento e reembolso?",
+        a: "Cancelamentos realizados com até 48h de antecedência têm reembolso integral. Em casos de mal tempo ou imprevistos operacionais reagendamos sem custo.",
+    },
+    {
+        id: 3,
+        q: "Os passeios têm guia credenciado?",
+        a: "Sim! Todos os passeios são conduzidos por guias locais credenciados que conhecem cada trilha, praia e ponto turístico da região.",
+    },
+    {
+        id: 4,
+        q: "É possível personalizar meu roteiro?",
+        a: "Claro! Entre em contato pelo WhatsApp e montamos um roteiro sob medida para o seu grupo, combinando atividades, refeições e hospedagem.",
+    },
+    {
+        id: 5,
+        q: "Como fazer o agendamento?",
+        a: "Basta clicar em 'Agendar', escolher a experiência e a data, ou falar direto pelo WhatsApp. Respondemos em minutos.",
+    },
+];
 
 export function WhereIts() {
-
-    const packages = [
-        {
-            id: 1,
-            days: "Diária",
-            label: "POUSADA",
-            title: "Villa Mar",
-            rating: "7.0",
-            stars: 5,
-            savings: "Economize R$80",
-            oldPrice: "R$ 299,99",
-            price: "R$ 219,99",
-            img: villarmar,
-            href: "/experiencia/villa-mar"
-        },
-        {
-            id: 2,
-            days: "Diária",
-            label: "POUSADA",
-            title: "Bella Flor",
-            rating: "8.4",
-            stars: 4,
-            savings: "Economize R$100",
-            oldPrice: "R$ 299,99",
-            price: "R$ 199,99",
-            img: bellaflor,
-            href: "/experiencia/bella-flor"
-        }
-    ];
+    const [open, setOpen] = useState<number | null>(1);
 
     return (
-        <>
-            <div >
-                <div className="max-w-7xl mx-auto px-6 py-20">
-                    <Reveal className="w-fit">
-                        <Badge>Onde ficar?</Badge>
-                    </Reveal>
-                    <Reveal delay={90} className="my-3">
-                        <Title>Opções de hospedagem em Baía Formosa</Title>
-                    </Reveal>
-                    <Reveal delay={180} className="max-w-2xl">
-                        <SubText>
-                            Encontre as melhores opções de hospedagem em Baía Formosa, desde pousadas aconchegantes até hotéis de luxo, todos cuidadosamente selecionados para garantir uma estadia inesquecível.
-                        </SubText>
-                    </Reveal>
-                    <div className="mt-10 flex gap-8 overflow-x-auto pb-4">
-                        {packages.map((item) => (
-                            <Reveal key={item.id} delay={item.id * 120} className="min-w-70 shrink-0">
-                                <Link href={item.href || "#"}
-                                    className="interactive-card block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
-                                >
-                                    <div className="relative overflow-hidden">
-                                        <Image
-                                            src={typeof item.img === "string" ? item.img : item.img.src}
-                                            alt={item.title}
-                                            width={560}
-                                            height={320}
-                                            className="h-44 w-full object-cover transition-transform duration-700 hover:scale-105"
-                                        />
-                                        <span className="absolute left-3 bottom-3 rounded-md bg-slate-900/90 px-3 py-1 text-xs font-semibold tracking-wide text-white">
-                                            {item.days}
-                                        </span>
-                                    </div>
+        <section className="bg-slate-50 py-20 sm:py-28" id="faq">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-                                    <div className="p-4">
-                                        <p className="text-xs font-semibold tracking-[0.2em] text-slate-400">
-                                            {item.label}
-                                        </p>
-                                        <h3 className="mt-1 text-lg font-semibold text-slate-900">
-                                            {item.title}
-                                        </h3>
-
-                                        <div className="mt-2 flex items-center gap-2">
-                                            <span className="text-sm text-amber-500">
-                                                {"★".repeat(item.stars)}
-                                            </span>
-                                        </div>
-
-                                        <div className="mt-3 text-sm text-slate-500">
-                                            <p>{item.rating}</p>
-                                        </div>
-
-                                        <div className="mt-3 inline-flex rounded-md bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">
-                                            {item.savings}
-                                        </div>
-
-                                        <div className="mt-3 border-t border-slate-200 pt-3 text-sm text-slate-500">
-                                            <p className="text-xs line-through">{item.oldPrice}</p>
-                                            <p className="text-2xl font-semibold text-slate-900">{item.price}</p>
-                                        </div>
-                                    </div>
+                    {/* Left – FAQ */}
+                    <div>
+                        <Reveal>
+                            <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">FAQ</p>
+                        </Reveal>
+                        <Reveal delay={80}>
+                            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 leading-tight mb-2">
+                                Tudo que Você Precisa Saber Antes da Sua{" "}
+                                <span className="text-gradient">Aventura</span>
+                            </h2>
+                        </Reveal>
+                        <Reveal delay={140}>
+                            <p className="text-slate-500 mb-8 text-sm leading-relaxed">
+                                Não encontrou o que procura?{" "}
+                                <Link href="https://wa.me/5584994511101" target="_blank" className="text-primary font-medium hover:underline inline-flex items-center gap-1">
+                                    Fale conosco agora
+                                    <ArrowUpRight className="size-3.5" />
                                 </Link>
-                            </Reveal>
-                        ))}
+                            </p>
+                        </Reveal>
+
+                        <div className="space-y-2">
+                            {faqs.map((faq, i) => (
+                                <Reveal key={faq.id} delay={i * 60}>
+                                    <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden">
+                                        <button
+                                            type="button"
+                                            className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-slate-50 transition-colors"
+                                            onClick={() => setOpen(open === faq.id ? null : faq.id)}
+                                        >
+                                            <span className="text-sm font-semibold text-slate-800">{faq.q}</span>
+                                            <ChevronDown
+                                                className={`size-4 text-slate-400 shrink-0 transition-transform duration-300 ${open === faq.id ? "rotate-180" : ""}`}
+                                            />
+                                        </button>
+                                        <div
+                                            className={`overflow-hidden transition-all duration-300 ${open === faq.id ? "max-h-40" : "max-h-0"}`}
+                                        >
+                                            <p className="px-5 pb-4 text-sm text-slate-500 leading-relaxed">{faq.a}</p>
+                                        </div>
+                                    </div>
+                                </Reveal>
+                            ))}
+                        </div>
                     </div>
+
+                    {/* Right – Image collage */}
+                    <Reveal delay={200} variant="right">
+                        <div className="relative h-120 hidden lg:block">
+                            {/* Main image */}
+                            <div className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl shadow-slate-900/15">
+                                <Image
+                                    src={villarmar}
+                                    alt="Pousada Villa Mar – Baía Formosa"
+                                    fill
+                                    className="object-cover"
+                                    sizes="50vw"
+                                />
+                                <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 to-transparent" />
+                            </div>
+
+                            {/* Floating stat card */}
+                            <div className="absolute -bottom-4 -left-6 rounded-2xl bg-white shadow-xl p-4 flex items-center gap-3 min-w-50">
+                                <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                                    <span className="text-primary text-lg font-bold">5★</span>
+                                </div>
+                                <div>
+                                    <p className="text-slate-900 font-bold text-sm leading-none mb-0.5">Avaliação Perfeita</p>
+                                    <p className="text-slate-400 text-xs">+500 clientes satisfeitos</p>
+                                </div>
+                            </div>
+
+                            {/* Floating badge */}
+                            <div className="absolute top-4 right-4 rounded-2xl bg-primary px-4 py-3 shadow-lg">
+                                <p className="text-white font-bold text-2xl leading-none">8+</p>
+                                <p className="text-white/80 text-xs">Experiências</p>
+                            </div>
+                        </div>
+                    </Reveal>
                 </div>
             </div>
-        </>
-    )
+        </section>
+    );
 }

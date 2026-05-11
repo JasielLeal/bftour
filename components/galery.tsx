@@ -23,17 +23,14 @@ const sizeClasses: Record<string, string> = {
 
 export function Galery() {
 	return (
-		<section className="bg-gray-50" id="galeria">
-			<div className="max-w-7xl mx-auto px-6 py-20">
-				<Reveal className="flex flex-col gap-4 items-center text-center">
-					<Badge>Galeria</Badge>
-					<Title>Momentos que inspiram</Title>
-					<div className="max-w-2xl">
-						<SubText>
-							Uma galeria em movimento contínuo, com imagens em tamanhos variados para um visual abstrato e
-							envolvente.
-						</SubText>
-					</div>
+		<section className="bg-slate-50" id="galeria">
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
+				<Reveal className="flex flex-col gap-3 items-center text-center">
+					<p className="text-primary text-sm font-semibold tracking-widest uppercase">Galeria</p>
+					<h2 className="text-3xl sm:text-4xl font-bold text-slate-900">Momentos que inspiram</h2>
+					<p className="text-slate-500 text-sm max-w-md">
+						Uma seleção de momentos reais vividos pelos nossos clientes em Baía Formosa.
+					</p>
 				</Reveal>
 			</div>
 
