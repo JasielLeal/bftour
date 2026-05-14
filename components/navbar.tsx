@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import logo from "@/public/logo.png"
+import logoWhite from "@/public/logo-white.png"
 import Image from "next/image"
 import Link from "next/link"
 import { ShoppingCart, ArrowUpRight, Menu, X } from "lucide-react"
@@ -21,6 +22,14 @@ export function Header() {
         { href: "#destinos",  label: "Destinos" },
         { href: "#contato",   label: "Contato" },
     ]
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (!href.startsWith("#")) return
+        e.preventDefault()
+        const id = href.slice(1)
+        const el = document.getElementById(id)
+        if (el) el.scrollIntoView({ behavior: "smooth" })
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -55,16 +64,17 @@ export function Header() {
                 <div className="flex items-center justify-between gap-3 sm:gap-6">
                 {/* Logo */}
                 <Link href="/" className="inline-flex items-center gap-2 shrink-0 hover:opacity-90 transition-opacity">
-                    <Image src={logo} alt="Baía Formosa Tour" width={38} height={38} />
+                    <Image src={isScrolled ? logo : logoWhite} alt="Baía Formosa Tour" width={38} height={38} />
                 </Link>
 
                 {/* Desktop nav */}
                 <nav className="hidden md:flex flex-1 items-center justify-center gap-1">
                     {links.map((link) => (
-                        <Link
+                        <a
                             key={link.href}
                             href={link.href}
-                            className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-xl group
+                            onClick={(e) => handleNavClick(e, link.href)}
+                            className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-xl group cursor-pointer
                                 ${isScrolled
                                     ? "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                                     : "text-white/85 hover:text-white hover:bg-white/10"
@@ -75,7 +85,7 @@ export function Header() {
                             <span className={`absolute bottom-1.5 left-1/2 -translate-x-1/2 h-0.5 w-0 rounded-full transition-all duration-200 group-hover:w-4
                                 ${isScrolled ? "bg-primary" : "bg-white"}
                             `} />
-                        </Link>
+                        </a>
                     ))}
                 </nav>
 
@@ -98,7 +108,7 @@ export function Header() {
                             </span>
                         )}
                     </Link>
-                    <Link href="https://wa.me/5584994511101?text=Olá! Vim do site e gostaria de agendar uma experiência." target="_blank">
+                    <Link href="https://wa.me/5584994062456?text=Olá! Vim do site e gostaria de agendar uma experiência." target="_blank">
                         <Button size="sm" className={`hidden md:inline-flex gap-1.5 rounded-xl font-semibold text-sm px-4 h-9
                             ${isScrolled ? "" : "bg-white text-slate-900 hover:bg-white/90"}
                         `}>
@@ -135,17 +145,17 @@ export function Header() {
                     onClick={(e) => e.stopPropagation()}
                 >
                     {links.map((link) => (
-                        <Link
+                        <a
                             key={link.href}
                             href={link.href}
                             className="px-4 py-3 text-sm font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-colors"
-                            onClick={() => setMobileOpen(false)}
+                            onClick={(e) => { handleNavClick(e, link.href); setMobileOpen(false) }}
                         >
                             {link.label}
-                        </Link>
+                        </a>
                     ))}
                     <div className="mt-2 pt-2 border-t border-slate-100">
-                        <Link href="https://wa.me/5584994511101" target="_blank" onClick={() => setMobileOpen(false)}>
+                        <Link href="https://wa.me/5584994062456" target="_blank" onClick={() => setMobileOpen(false)}>
                             <Button className="w-full gap-2 rounded-xl">
                                 Agendar agora
                                 <ArrowUpRight className="size-4" />

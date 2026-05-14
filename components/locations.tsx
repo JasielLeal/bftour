@@ -6,7 +6,7 @@ const address = "R. Sen. Antonio Arruda Farias, 56, Baía Formosa - RN, 59194-00
 const encodedAddress = encodeURIComponent(address);
 const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
 const appleMapsUrl = `https://maps.apple.com/?q=${encodedAddress}`;
-const whatsappUrl = "https://wa.me/5584999999999";
+const whatsappUrl = "https://wa.me/5584994062456";
 
 const infoItems = [
     {
@@ -24,7 +24,7 @@ const infoItems = [
     {
         icon: Phone,
         label: "WhatsApp",
-        value: "(84) 9 9999-9999",
+        value: "(84) 9 9406-2456",
         sub: "Resposta rápida garantida",
         href: whatsappUrl,
     },

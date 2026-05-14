@@ -317,6 +317,28 @@ export const experiencias: Experiencia[] = [
         onsale: false,
     },
     {
+        slug: "daboa-beach",
+        titulo: "Daboa Beach",
+        tipo: "Experiência Gastronômica",
+        localizacao: "Praça da Conceição, 68, Baía Formosa - RN, 59194-000",
+        open: "Quarta a segunda das 11:00 às 22:00",
+        oldPreco: 199.99,
+        vagas: false,
+        preco: 119.99,
+        descricao:
+            "A Daboa Beach traduz a essência de Baía Formosa: boa comida, drinks incríveis e uma atmosfera leve. Um espaço pensado para aproveitar bons momentos entre amigos, família e o melhor do litoral potiguar.",
+        imagens: [
+            "/experiencia-gastronomica/dboa/01.jpeg", "/experiencia-gastronomica/dboa/02.jpeg",
+            "/experiencia-gastronomica/dboa/03.jpeg", "/experiencia-gastronomica/dboa/04.jpeg",
+            "/experiencia-gastronomica/dboa/05.jpeg", "/experiencia-gastronomica/dboa/06.jpeg",
+            "/experiencia-gastronomica/dboa/07.jpeg"
+        ],
+        type: "Experiência",
+        valorPor: "Pessoa",
+        opcoes: ["Drive-through", "Drinks exclusivos", "Refeição no local", "Mesas externas", "Ótima seleção de cervejas"],
+        onsale: false,
+    },
+    {
         slug: "pizzaria-cunhau",
         titulo: "Pizzaria Cunhaú",
         tipo: "Experiência Gastronômica",

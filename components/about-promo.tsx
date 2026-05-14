@@ -1,62 +1,30 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "./reveal";
-import { ArrowUpRight, Play, X, Shield, Clock, Award } from "lucide-react";
+import { ArrowUpRight, Play, Shield, Clock, Award } from "lucide-react";
 
 const highlights = [
     { icon: Shield, text: "Segurança certificada em todos os passeios" },
     { icon: Clock, text: "Horários flexíveis, você escolhe o melhor dia" },
-    { icon: Award, text: "Guias locais premiados e apaixonados pela região" },
+    { icon: Award, text: "Guias renomados premiados e apaixonados pela região" },
 ];
 
 const stats = [
     { value: "8+", label: "Experiências" },
-    { value: "500+", label: "Clientes" },
+    { value: "2000+", label: "Clientes" },
     { value: "5★", label: "Google" },
-    { value: "95km", label: "de Natal" },
 ];
 
 export function AboutPromo() {
-    const [lightboxOpen, setLightboxOpen] = useState(false);
-
     return (
         <>
-        {/* ── Lightbox modal ── */}
-        {lightboxOpen && (
-            <div
-                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
-                onClick={() => setLightboxOpen(false)}
-            >
-                <button
-                    className="absolute top-5 right-5 size-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-                    onClick={() => setLightboxOpen(false)}
-                    aria-label="Fechar"
-                >
-                    <X className="size-5" />
-                </button>
-                <div
-                    className="w-full max-w-4xl aspect-video rounded-2xl overflow-hidden shadow-2xl"
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    {/* Substitua o ID do YouTube pelo vídeo real */}
-                    <iframe
-                        className="w-full h-full"
-                        src="https://www.youtube.com/embed/?autoplay=1&rel=0"
-                        title="BF Tour – Baía Formosa"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    />
-                </div>
-            </div>
-        )}
 
         <section className="relative bg-slate-950 py-20 sm:py-28 overflow-hidden">
             {/* Ambient blobs */}
-            <div className="pointer-events-none absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-primary/10 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full bg-orange-400/8 blur-3xl" />
+            <div className="pointer-events-none absolute -top-32 -left-32 w-125 h-125 rounded-full bg-primary/10 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-32 -right-32 w-100 h-100 rounded-full bg-orange-400/8 blur-3xl" />
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -76,10 +44,9 @@ export function AboutPromo() {
                         </Reveal>
                         <Reveal delay={150}>
                             <p className="text-white/55 text-base leading-relaxed mb-8">
-                                A BF Tour nasceu do amor pelo litoral de Baía Formosa. Somos guias
-                                locais apaixonados, prontos para revelar os segredos da natureza
-                                preservada do RN — praias desertas, trilhas, rios cristalinos e
-                                sabores que ficam na memória.
+                                BF Tour nasceu do amor pelo litoral de Baía Formosa. Há mais de 7 anos, proporcionamos experiências
+                                 inesquecíveis e conectando pessoas a vida real. Somos guias locais apaixonados e temos o prazer de 
+                                 levar você para conhecer praias paradisíacas, trilhas, lagoas e rios cristalinos e paisagens únicas.
                             </p>
                         </Reveal>
 
@@ -99,7 +66,7 @@ export function AboutPromo() {
 
                         {/* Stats grid */}
                         <Reveal delay={300}>
-                            <div className="grid grid-cols-4 gap-3 mb-10">
+                            <div className="grid grid-cols-3 gap-3 mb-10">
                                 {stats.map((s) => (
                                     <div
                                         key={s.label}
@@ -125,10 +92,10 @@ export function AboutPromo() {
 
                     {/* ── Right: video thumbnail ── */}
                     <Reveal delay={200} variant="right">
-                        <div className="relative group cursor-pointer" onClick={() => setLightboxOpen(true)}>
+                        <div className="relative group cursor-pointer" onClick={() => window.open("https://www.instagram.com/p/DX-PlIPvANS/", "_blank", "noreferrer")}>
 
                             {/* Main image */}
-                            <div className="relative h-[420px] sm:h-[500px] rounded-3xl overflow-hidden shadow-2xl shadow-black/60">
+                            <div className="relative h-105 sm:h-125 rounded-3xl overflow-hidden shadow-2xl shadow-black/60">
                                 <Image
                                     src="/barco/03.webp"
                                     alt="Passeio de barco em Baía Formosa"

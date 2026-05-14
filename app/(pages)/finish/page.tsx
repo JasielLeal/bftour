@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useCart } from "@/components/cart/cart-context";
 import { Reveal } from "@/components/reveal";
 
-const whatsappBaseUrl = "https://wa.me/5584994538722";
+const whatsappBaseUrl = "https://wa.me/5584994062456";
 
 export default function Finish() {
   const { items, buildWhatsappMessage } = useCart();

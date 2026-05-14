@@ -185,7 +185,7 @@ export default function FeedbackPage() {
             `*Avaliação:* ${"⭐".repeat(nota)} (${nota}/5)\n\n` +
             `*Comentário:*\n${mensagem}`;
 
-        const url = `https://wa.me/5584994511101?text=${encodeURIComponent(texto)}`;
+        const url = `https://wa.me/5584994062456?text=${encodeURIComponent(texto)}`;
         window.open(url, "_blank", "noopener,noreferrer");
         setEnviado(true);
     }

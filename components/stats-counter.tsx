@@ -73,7 +73,7 @@ export function StatsCounter() {
                 {/* Big counter */}
                 <Reveal delay={220}>
                     <div className="text-[5rem] sm:text-[8rem] lg:text-[10rem] font-black text-white leading-none tracking-tighter mb-2">
-                        <CountUp to={500} suffix="+" />
+                        <CountUp to={2000} suffix="+" />
                     </div>
                     <p className="text-white/50 text-lg font-medium mb-20">
                         Clientes que viveram a experiência

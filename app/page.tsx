@@ -49,7 +49,7 @@ export default function Home() {
                 </div>
                 <Reveal delay={160} variant="right">
                   <Link
-                    href="https://wa.me/5584994511101"
+                    href="https://wa.me/5584994062456"
                     target="_blank"
                     className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-5 py-2.5 text-sm font-medium text-slate-700 hover:border-primary hover:text-primary transition-colors group"
                   >
@@ -72,10 +72,10 @@ export default function Home() {
 
                   {/* Center play button */}
                   <a
-                    href="https://wa.me/5584994511101"
+                    href="https://www.instagram.com/p/DUEaAISD78C/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Agendar pelo WhatsApp"
+                    aria-label="Ver vídeo no Instagram"
                     className="absolute inset-0 flex items-center justify-center"
                   >
                     <div className="relative flex items-center justify-center">
@@ -138,15 +138,9 @@ export default function Home() {
                     </p>
                   </Reveal>
                   <Reveal delay={220} className="flex flex-col sm:flex-row gap-3">
+                   
                     <Link
-                      href="#favorites"
-                      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-sm font-semibold text-white hover:bg-slate-800 transition-colors"
-                    >
-                      Explorar experiências
-                      <ArrowUpRight className="size-4" />
-                    </Link>
-                    <Link
-                      href="https://wa.me/5584994511101"
+                      href="https://wa.me/5584994062456"
                       target="_blank"
                       className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 px-6 py-3.5 text-sm font-semibold text-slate-700 hover:border-primary hover:text-primary transition-colors"
                     >

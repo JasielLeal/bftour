@@ -57,7 +57,7 @@ export function WhereIts() {
                         <Reveal delay={140}>
                             <p className="text-slate-500 mb-8 text-sm leading-relaxed">
                                 Não encontrou o que procura?{" "}
-                                <Link href="https://wa.me/5584994511101" target="_blank" className="text-primary font-medium hover:underline inline-flex items-center gap-1">
+                                <Link href="https://wa.me/5584994062456" target="_blank" className="text-primary font-medium hover:underline inline-flex items-center gap-1">
                                     Fale conosco agora
                                     <ArrowUpRight className="size-3.5" />
                                 </Link>

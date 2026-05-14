@@ -8,7 +8,7 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const activities = [
 	{
-		id: 1,
+		id: 2,
 		tag: "Aventura",
 		kicker: "Surf Experience BF",
 		title: "Aula de Surf",
@@ -18,7 +18,7 @@ const activities = [
 		category: "Aventura",
 	},
 	{
-		id: 2,
+		id: 3,
 		tag: "Natureza",
 		kicker: "Para os Aventureiros",
 		title: "Trilha na Mata",
@@ -28,7 +28,17 @@ const activities = [
 		category: "Natureza",
 	},
 	{
-		id: 3,
+		id: 4,
+		tag: "Gastronomia",
+		kicker: "Culinária Regional",
+		title: "Daboa Beach",
+		slug: "daboa-beach",
+		image: "/experiencia-gastronomica/dboa/01.jpeg",
+		alt: "Daboa Beach",
+		category: "Gastronomia",
+	},
+	{
+		id: 5,
 		tag: "Gastronomia",
 		kicker: "Bar e Restaurante",
 		title: "BF Music",
@@ -38,7 +48,7 @@ const activities = [
 		category: "Gastronomia",
 	},
 	{
-		id: 4,
+		id: 6,
 		tag: "Gastronomia",
 		kicker: "Culinária Japonesa",
 		title: "Willian Sushi",
@@ -48,7 +58,7 @@ const activities = [
 		category: "Gastronomia",
 	},
 	{
-		id: 5,
+		id: 7,
 		tag: "Gastronomia",
 		kicker: "Pizzaria & Hamburgueria",
 		title: "Pizzaria Cunhaú",
@@ -57,6 +67,7 @@ const activities = [
 		alt: "Pizzaria Cunhaú",
 		category: "Gastronomia",
 	},
+	
 ];
 
 const tabs = ["Todos", "Aventura", "Natureza", "Gastronomia"];

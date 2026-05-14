@@ -37,6 +37,15 @@ export function ExpirenciesGastronomics() {
       alt: "Pizzaria Cunhaú",
       href: "/experiencias/pizzaria-cunhau",
     },
+    {
+      id: 4,
+      kicker: "Culinária Regional",
+      title: "Daboa Beach",
+      slug: "daboa-beach",
+      image: "/experiencia-gastronomica/dboa/01.jpeg",
+      alt: "Daboa Beach",
+      href: "/experiencias/daboa-beach",
+    },
   ];
 
   const trackRef = useRef<HTMLDivElement>(null);

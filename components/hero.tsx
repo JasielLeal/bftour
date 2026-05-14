@@ -1,10 +1,63 @@
-import Link from "next/link";
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { Reveal } from "./reveal";
-import { MapPin, Calendar, Users, ArrowUpRight, Star, Compass } from "lucide-react";
+import { MapPin, Calendar, ArrowUpRight, Star, Compass, ChevronDown, Tag } from "lucide-react";
+
+const ATIVIDADES = [
+  "Todas as atividades",
+  "Quadriciclo",
+  "Buggy",
+  "Barco",
+  "Canoa",
+  "Surf",
+  "Experiência Gastronômica",
+  "Trilha",
+  "Pousadas",
+];
 
 export function Hero() {
+  const [date, setDate] = useState("");
+  const [atividade, setAtividade] = useState("");
+  const [openDrop, setOpenDrop] = useState(false);
+  const [dropPos, setDropPos] = useState({ top: 0, left: 0, width: 0 });
+  const dropRef = useRef<HTMLDivElement>(null);
+  const dateRef = useRef<HTMLInputElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (dropRef.current && !dropRef.current.contains(e.target as Node)) {
+        setOpenDrop(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  function toggleDrop() {
+    if (!openDrop && dropRef.current) {
+      const rect = dropRef.current.getBoundingClientRect();
+      setDropPos({ top: rect.bottom + 8, left: rect.left, width: rect.width });
+    }
+    setOpenDrop((o) => !o);
+  }
+
+  const atividadeLabel = atividade || "Escolha atividade";
+
+  const whatsappMsg = [
+    "Olá! Gostaria de agendar uma experiência em Baía Formosa.",
+    atividade ? `Atividade: ${atividade}` : "",
+    date ? `Data: ${new Date(date + "T00:00:00").toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" })}` : "",
+  ].filter(Boolean).join("\n");
+
+  const whatsappHref = `https://wa.me/5584994062456?text=${encodeURIComponent(whatsappMsg)}`;
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-900">
       {/* Background image – mobile */}
@@ -60,14 +113,14 @@ export function Hero() {
         {/* Heading */}
         <Reveal delay={140}>
           <h1 className="text-white font-extrabold leading-[1.1] tracking-tight text-[1.95rem] sm:text-5xl lg:text-6xl xl:text-7xl max-w-3xl mb-4">
-            Descubra o Paraíso <span className="text-gradient text-[2.3rem] sm:text-5xl lg:text-6xl xl:text-7xl">Natural do Nordeste.</span>
+            Descubra o Paraíso <span className="text-gradient text-[2rem] sm:text-5xl lg:text-6xl xl:text-5xl">Escondido do Nordeste.</span>
           </h1>
         </Reveal>
 
         {/* Subtext */}
         <Reveal delay={220}>
           <p className="text-white/65 max-w-lg text-sm sm:text-base mb-8 leading-relaxed">
-            Praias desertas, natureza preservada e aventuras inesquecíveis a 95 km de Natal. 
+            Praias desertas, natureza preservada e aventuras inesquecíveis a cerca de 95 km de Natal e João Pessoa. 
             Viva Baía Formosa de um jeito único.
           </p>
         </Reveal>
@@ -84,28 +137,62 @@ export function Hero() {
             </div>
             <div className="hidden sm:block w-px h-8 bg-white/20 self-center" />
             <div className="h-px sm:hidden bg-white/10 mx-4" />
-            <div className="flex items-center gap-3 flex-1 px-4 py-2.5 rounded-xl">
+            <div
+              className="flex items-center gap-3 flex-1 px-4 py-2.5 rounded-xl cursor-pointer hover:bg-white/5 transition-colors"
+              onClick={() => dateRef.current?.showPicker?.()}
+            >
               <Calendar className="text-primary size-4 shrink-0" />
-              <div>
+              <div className="flex-1">
                 <p className="text-white/50 text-[10px] uppercase tracking-widest leading-none mb-0.5">Data</p>
-                <p className="text-white/80 text-sm font-medium">Escolha sua data</p>
+                <p className="text-white/80 text-sm font-medium">
+                  {date
+                    ? new Date(date + "T00:00:00").toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" })
+                    : "Escolha sua data"}
+                </p>
               </div>
+              <input
+                ref={dateRef}
+                type="date"
+                min={new Date().toISOString().split("T")[0]}
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="absolute opacity-0 w-0 h-0 pointer-events-none"
+              />
             </div>
             <div className="hidden sm:block w-px h-8 bg-white/20 self-center" />
             <div className="h-px sm:hidden bg-white/10 mx-4" />
-            <div className="flex items-center gap-3 flex-1 px-4 py-2.5 rounded-xl">
-              <Users className="text-primary size-4 shrink-0" />
-              <div>
-                <p className="text-white/50 text-[10px] uppercase tracking-widest leading-none mb-0.5">Pessoas</p>
-                <p className="text-white/80 text-sm font-medium">2 Pessoas</p>
+            <div ref={dropRef} className="relative flex items-center gap-3 flex-1 px-4 py-2.5 rounded-xl cursor-pointer hover:bg-white/5 transition-colors" onClick={toggleDrop}>
+              <Tag className="text-primary size-4 shrink-0" />
+              <div className="flex-1">
+                <p className="text-white/50 text-[10px] uppercase tracking-widest leading-none mb-0.5">Atividade</p>
+                <p className="text-white/80 text-sm font-medium truncate">{atividadeLabel}</p>
               </div>
+              <ChevronDown className={`size-3.5 text-white/40 shrink-0 transition-transform ${openDrop ? "rotate-180" : ""}`} />
             </div>
-            <Link href="#favorites" className="sm:ml-1 px-2 sm:px-0">
+            {mounted && openDrop && createPortal(
+              <div
+                style={{ position: "fixed", top: dropPos.top, left: dropPos.left, minWidth: Math.max(dropPos.width, 200), zIndex: 9999 }}
+                className="rounded-xl overflow-hidden shadow-xl border border-white/10 bg-slate-900/95 backdrop-blur"
+                onMouseDown={(e) => e.stopPropagation()}
+              >
+                {ATIVIDADES.map((a) => (
+                  <button
+                    key={a}
+                    className={`w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-white/10 ${atividade === (a === "Todas as atividades" ? "" : a) ? "text-primary font-semibold" : "text-white/80"}`}
+                    onClick={() => { setAtividade(a === "Todas as atividades" ? "" : a); setOpenDrop(false); }}
+                  >
+                    {a}
+                  </button>
+                ))}
+              </div>,
+              document.body
+            )}
+            <a href={whatsappHref} target="_blank" rel="noreferrer" className="sm:ml-1 px-2 sm:px-0">
               <Button className="w-full sm:w-auto gap-2 px-6 h-11 rounded-xl font-semibold text-sm">
                 Agendar
                 <ArrowUpRight className="size-4" />
               </Button>
-            </Link>
+            </a>
           </div>
         </Reveal>
 
@@ -117,7 +204,7 @@ export function Hero() {
           </div>
           <div className="w-px h-10 bg-white/20" />
           <div className="stat-animate" style={{ animationDelay: "600ms" }}>
-            <p className="text-white font-bold text-2xl sm:text-3xl">500+</p>
+            <p className="text-white font-bold text-2xl sm:text-3xl">2000+</p>
             <p className="text-white/50 text-xs tracking-wide">Clientes</p>
           </div>
           <div className="w-px h-10 bg-white/20" />
