@@ -12,6 +12,7 @@ import { Reveal } from "@/components/reveal";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Play } from "lucide-react";
+import socios from "@/public/socios.jpeg"
 
 export default function Home() {
   return (
@@ -117,6 +118,21 @@ export default function Home() {
           </section>
 
           <Galery />
+
+          <section className="bg-white py-10 sm:py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6">
+              <Reveal>
+                <Image
+                  alt="Júlio e João Luiz – CEOs da BF Tour"
+                  src={socios}
+                  quality={90}
+                  sizes="(max-width: 768px) 100vw, 896px"
+                  style={{ width: "100%", height: "auto" }}
+                  className="rounded-3xl shadow-xl"
+                />
+              </Reveal>
+            </div>
+          </section>
 
           {/* CTA – Plan Your Perfect Escape */}
           <section className="bg-white py-20 sm:py-28">
