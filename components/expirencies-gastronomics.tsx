@@ -10,8 +10,17 @@ import { Reveal } from "./reveal";
 
 export function ExpirenciesGastronomics() {
   const activities = [
-    {
+     {
       id: 1,
+      kicker: "Culinária Regional",
+      title: "Daboa Beach",
+      slug: "daboa-beach",
+      image: "/experiencia-gastronomica/dboa/01.jpeg",
+      alt: "Daboa Beach",
+      href: "/experiencias/daboa-beach",
+    },
+    {
+      id: 2,
       kicker: "Bar e Restaurante",
       title: "BF Music",
       slug: "bf-music",
@@ -20,7 +29,7 @@ export function ExpirenciesGastronomics() {
       href: "/experiencias/bf-music",
     },
     {
-      id: 2,
+      id: 3,
       kicker: "Culinária Japonesa",
       title: "Willian Sushi",
       slug: "willian-sushi",
@@ -29,7 +38,7 @@ export function ExpirenciesGastronomics() {
       href: "/experiencias/willian-sushi",
     },
     {
-      id: 3,
+      id: 4,
       kicker: "Pizzaria & Hamburgueria",
       title: "Pizzaria Cunhaú",
       slug: "pizzaria-cunhau",
@@ -37,15 +46,7 @@ export function ExpirenciesGastronomics() {
       alt: "Pizzaria Cunhaú",
       href: "/experiencias/pizzaria-cunhau",
     },
-    {
-      id: 4,
-      kicker: "Culinária Regional",
-      title: "Daboa Beach",
-      slug: "daboa-beach",
-      image: "/experiencia-gastronomica/dboa/01.jpeg",
-      alt: "Daboa Beach",
-      href: "/experiencias/daboa-beach",
-    },
+   
   ];
 
   const trackRef = useRef<HTMLDivElement>(null);
@@ -72,7 +73,7 @@ export function ExpirenciesGastronomics() {
           </p>
         </Reveal>
 
-        <div className="relative mt-10">
+        <div className="relative mt-10 overflow-hidden">
           <button
             type="button"
             aria-label="Voltar"
@@ -92,7 +93,8 @@ export function ExpirenciesGastronomics() {
 
           <div
             ref={trackRef}
-            className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 no-scrollbar"
+            className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-proximity pb-4 no-scrollbar"
+            style={{ touchAction: "pan-x" }}
           >
             {activities.map((activity) => (
               <Reveal key={activity.id} delay={activity.id * 120} className="shrink-0">

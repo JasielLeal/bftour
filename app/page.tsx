@@ -4,6 +4,8 @@ import { AboutPromo } from "@/components/about-promo";
 import { StatsCounter } from "@/components/stats-counter";
 import { WhereIts } from "@/components/whereIts";
 import { Activities } from "@/components/activities";
+import { ExpirenciesGastronomics } from "@/components/expirencies-gastronomics";
+import { Pousadas } from "@/components/pousadas";
 import { Galery } from "@/components/galery";
 import { Location } from "@/components/locations";
 import { Footer } from "@/components/footer";
@@ -116,6 +118,10 @@ export default function Home() {
           <section id="services">
             <Activities />
           </section>
+
+          <ExpirenciesGastronomics />
+
+          <Pousadas />
 
           <Galery />
 

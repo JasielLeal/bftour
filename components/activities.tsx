@@ -27,50 +27,9 @@ const activities = [
 		alt: "Trilha na Mata de Baía Formosa",
 		category: "Natureza",
 	},
-	{
-		id: 4,
-		tag: "Gastronomia",
-		kicker: "Culinária Regional",
-		title: "Daboa Beach",
-		slug: "daboa-beach",
-		image: "/experiencia-gastronomica/dboa/01.jpeg",
-		alt: "Daboa Beach",
-		category: "Gastronomia",
-	},
-	{
-		id: 5,
-		tag: "Gastronomia",
-		kicker: "Bar e Restaurante",
-		title: "BF Music",
-		slug: "bf-music",
-		image: "/experiencia-gastronomica/bf-music/01.webp",
-		alt: "BF Music – Baía Formosa",
-		category: "Gastronomia",
-	},
-	{
-		id: 6,
-		tag: "Gastronomia",
-		kicker: "Culinária Japonesa",
-		title: "Willian Sushi",
-		slug: "willian-sushi",
-		image: "/experiencia-gastronomica/willian-sushi/01.png",
-		alt: "Willian Sushi",
-		category: "Gastronomia",
-	},
-	{
-		id: 7,
-		tag: "Gastronomia",
-		kicker: "Pizzaria & Hamburgueria",
-		title: "Pizzaria Cunhaú",
-		slug: "pizzaria-cunhau",
-		image: "/experiencia-gastronomica/pizzaria-cunhau/01.webp",
-		alt: "Pizzaria Cunhaú",
-		category: "Gastronomia",
-	},
-	
 ];
 
-const tabs = ["Todos", "Aventura", "Natureza", "Gastronomia"];
+const tabs = ["Todos", "Aventura", "Natureza"];
 
 export function Activities() {
 	const [active, setActive] = useState("Todos");

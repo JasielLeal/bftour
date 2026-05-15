@@ -118,6 +118,10 @@
   font-family: var(--font-outfit), "Outfit", sans-serif;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 /* ── Hero big text ────────────────────────────────────────── */
 .hero-big-text {
   font-size: clamp(5rem, 18vw, 22rem);
